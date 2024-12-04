@@ -1,0 +1,245 @@
+:root {
+    --background-dark: #1a1b1e;
+    --background-card-dapps:  #15181b;
+    --text-primary: #ffffff;
+    --text-secondary: #9ca3af;
+    --accent-color: #f97316;
+    --border-color: #374151;
+    --input-background: #2a2d31;
+    --hover-color: #2c2f33;
+    --toggle-off: #313033;
+    --toggle-on: #3a4b39;
+    --toggle-button: #84da89;
+    --scrollbar-track: #2a2d31;
+}
+
+.settings-settings-popup {
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    height: 480px;
+    border-radius: 10px;
+    position: absolute;
+    right: -10px;  /* Changed from left positioning */
+    top: -530px;    /* Adjusted top positioning */
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+    z-index: 100;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.settings-settings-popup.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+/* Prevent text selection when toggling visibility */
+.settings-settings-popup,
+.settings-settings-popup * {
+    user-select: none;
+}
+
+.settings-settings-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.settings-big-input {
+    width: 95%;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: var(--input-background);
+    color: var(--text-primary);
+}
+
+.settings-slippage-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.settings-slippage-input {
+    width: 50px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-left: 10px;
+    background-color: var(--input-background);
+    color: var(--text-primary);
+}
+
+.settings-dapp-controls {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.settings-search-input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-bottom: -10px;
+    background-color: var(--input-background);
+    color: var(--text-primary);
+}
+
+.settings-toggle-all-button {
+    padding: 5px 10px;
+    background-color: var(--toggle-off);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: -9px;
+    color: var(--text-primary);
+    transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+.settings-toggle-all-button:hover {
+    background-color: #5f5e5e; /* Slight gray color for hover effect */
+}
+
+.settings-dapp-list {
+    overflow-y: auto;
+
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: -10px;
+    padding-right: 8px;
+    margin-right: -15px;
+}
+
+.settings-dapp-entry {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin-bottom: 5px;
+    background-color: var(--background-card-dapps);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.settings-dapp-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: var(--input-background);
+}
+
+.settings-dapp-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.settings-dapp-name {
+    flex: 1;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+/* New toggle switch styles */
+.settings-toggle-switch {
+    font-size: 10px;
+    position: relative;
+    display: inline-block;
+    width: 3.7em;
+    height: 1.8em;
+}
+
+.settings-toggle-switch input {
+    display: none;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.settings-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--toggle-off);
+    transition: .2s;
+    border-radius: 30px;
+}
+
+.settings-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 20px;
+    left: 0.2em;
+    bottom: 0.2em;
+    background-color: #aeaaae;
+    transition: .4s;
+}
+
+.settings-toggle-switch input:checked + .settings-toggle-slider:before {
+    background-color: var(--toggle-button);
+}
+
+.settings-toggle-switch input:checked + .settings-toggle-slider {
+    background-color: var(--toggle-on);
+}
+
+.settings-toggle-switch input:focus + .settings-toggle-slider {
+    box-shadow: 0 0 1px var(--toggle-on);
+}
+
+.settings-toggle-switch input:checked + .settings-toggle-slider:before {
+    transform: translateX(1.9em);
+}
+
+.settings-save-close-button {
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 15px;
+    margin-bottom: -15px;
+}
+
+.settings-save-close-button:hover {
+    background-color: #e86304;
+}
+
+/* Scrollbar styling */
+.settings-dapp-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.settings-dapp-list::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 10px;
+}
+
+.settings-dapp-list::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 10px;
+}
+
+.settings-dapp-list::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}

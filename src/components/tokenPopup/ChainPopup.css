@@ -1,0 +1,155 @@
+:root {
+    --background-dark: #1a1b1e;
+    --background-card-chain: #202327;
+    --text-primary: #ffffff;
+    --text-secondary: #9ca3af;
+    --accent-color: #f97316;
+    --border-color: #374151;
+    --input-background: #2a2d31;
+    --hover-color: #2c2f33;
+    --scrollbar-thumb: #4a4d52;
+    --scrollbar-track: #2a2d31;
+}
+
+.chain-popup-popup-overlay {
+    position: fixed;
+    top: 0px;
+    left: 3px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.chain-popup-popup-container {
+    width: 324px;
+    height: 520px;
+    max-width: 324px;
+    min-width: 324px;
+    background: var(--background-dark);
+    border-radius: 10px;
+    padding: 10px 10px 10px 15px; /* Adjusted padding to move content right */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chain-popup-search-bar {
+    width: calc(100% - 46px); /* Adjusted width */
+    padding: 15px 15px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--background-card-chaind);
+    color: var(--text-primary);
+}
+
+.chain-popup-chain-list {
+    
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px; /* Add right padding */
+    width: 98.3%; 
+}
+
+/* Styling the scrollbar */
+.chain-popup-chain-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chain-popup-chain-list::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 10px;
+}
+
+.chain-popup-chain-list::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 10px;
+}
+
+.chain-popup-chain-list::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+.chain-popup-chain-item {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    gap: 10px;
+    padding: 7px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text-primary);
+}
+
+.chain-popup-chain-item:hover {
+    background-color: var(--hover-color);
+}
+
+.chain-popup-chain-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--background-card-chain);
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.chain-popup-chain-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.chain-popup-chain-name {
+    font-weight: bold;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-primary);
+}
+
+.chain-popup-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    z-index: 1;
+}
+
+.chain-popup-loading {
+    text-align: center;
+    padding: 10px;
+    color: var(--text-secondary);
+}
+
+.chain-popup-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out;
+}

@@ -1,0 +1,365 @@
+{
+    "get": {
+        "tags": ["Get transaction data"],
+      "summary": "Get transaction data by requestId and quoteNumber",
+      "description": "Use this to get transaction data simply by requestId from your request and quoteNumber (number of quote you want to use, starting from 1).\n\nTransactions are getting validated before provided for the response.\n\n**But its always recomended to estimate gas before sending transaction to prevent loss of funds**\n\nAfter gas estimation you can simply sign the **\"transaction\"** object",
+      "parameters": [
+        {
+          "name": "requestId",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "622e76fe-fcdd-4cd2-a87c-0f50bacb06de"
+          },
+          "description": "The ID of the request."
+        },
+        {
+          "name": "quoteNumber",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "example": 1
+          },
+          "description": "The number of the quote you want to use, starting from 1."
+        }
+      ],
+      "responses": {
+      "200": {
+        "description": "Quote generated successfully",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "example": {
+                "tool": "nitro",
+                "fromChainId": 10,
+                "fromAmountUSD": "1000.00",
+                "fromAmount": "1000000000",
+                "fromAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                "toAmount": "401125195932054597",
+                "toAmountMin": "397113943972734000",
+                "swapCostETH": "0.00000052",
+                "swapCostUSD": "0.00130",
+                "toChainId": 42161,
+                "toAmountUSD": "1004.38",
+                "fromToken": {
+                  "address": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+                  "chainId": 10,
+                  "symbol": "USDC",
+                  "decimals": 6,
+                  "name": "USD Coin",
+                  "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+                  "priceUSD": "1"
+                },
+                "toToken": {
+                  "address": "0x0000000000000000000000000000000000000000",
+                  "chainId": 42161,
+                  "symbol": "ETH",
+                  "decimals": 18,
+                  "name": "ETH",
+                  "coinKey": "ETH",
+                  "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
+                  "priceUSD": "2503.91"
+                },
+                "options": {
+                  "slippage": 1,
+                  "dapps": [
+                    "nitro",
+                    "jumper"
+                  ]
+                },
+                "toAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                "approvalAddress": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
+                "gasGwei": "0.001300776",
+                "transaction": {
+                  "value": "0x00",
+                  "to": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
+                  "from": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                  "data": "0x06135b7c000000000000000000000000000000000000000000000000000000000000006b34323136310000000000000000000000000000000000000000000000......",
+                  "chainId": 10,
+                  "gasPrice": "1300776",
+                  "gas": 400000
+                }
+              }
+            }
+          }
+        }
+      },
+        "400": {
+          "description": "Bad request"
+        },
+        "500": {
+          "description": "Server error"
+        }
+      }
+    },
+    "post": {
+        "tags": ["Get transaction data"],
+      "summary": "Process a transaction from a quote",
+        "description": "To this /transaction endpoint you pass the whole quote you selected (usually the first, best one) returned from the /quote endpoint.\n\nTransactions are getting validated before provided for the response.\n\n**But its always recomended to estimate gas before sending transaction to prevent loss of funds**\n\nAfter gas estimation you can simply sign the **\"transaction\"** object",
+        "requestBody": {
+        "required": true,
+        "content": {
+            "application/json": {
+            "schema": {
+                "type": "object",
+                "properties": {
+                "tool": {
+                    "type": "string",
+                    "example": "nitro"
+                },
+                "fromChainId": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "fromAmountUSD": {
+                    "type": "string",
+                    "example": "1000.00"
+                },
+                "fromAmount": {
+                    "type": "string",
+                    "example": "1000000000"
+                },
+                "fromAddress": {
+                    "type": "string",
+                    "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+                },
+                "toAmount": {
+                    "type": "string",
+                    "example": "400682998888926075"
+                },
+                "toAmountMin": {
+                    "type": "string",
+                    "example": "396676168900036800"
+                },
+                "swapCostETH": {
+                    "type": "string",
+                    "example": "0.00000393"
+                },
+                "swapCostUSD": {
+                    "type": "string",
+                    "example": "0.00985"
+                },
+                "toChainId": {
+                    "type": "integer",
+                    "example": 42161
+                },
+                "toAmountUSD": {
+                    "type": "string",
+                    "example": "1003.27"
+                },
+                "fromToken": {
+                    "type": "object",
+                    "properties": {
+                    "address": {
+                        "type": "string",
+                        "example": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85"
+                    },
+                    "chainId": {
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "symbol": {
+                        "type": "string",
+                        "example": "USDC"
+                    },
+                    "decimals": {
+                        "type": "integer",
+                        "example": 6
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "USD Coin"
+                    },
+                    "logoURI": {
+                        "type": "string",
+                        "example": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
+                    },
+                    "priceUSD": {
+                        "type": "string",
+                        "example": "1"
+                    }
+                    }
+                },
+                "toToken": {
+                    "type": "object",
+                    "properties": {
+                    "address": {
+                        "type": "string",
+                        "example": "0x0000000000000000000000000000000000000000"
+                    },
+                    "chainId": {
+                        "type": "integer",
+                        "example": 42161
+                    },
+                    "symbol": {
+                        "type": "string",
+                        "example": "ETH"
+                    },
+                    "decimals": {
+                        "type": "integer",
+                        "example": 18
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "ETH"
+                    },
+                    "coinKey": {
+                        "type": "string",
+                        "example": "ETH"
+                    },
+                    "logoURI": {
+                        "type": "string",
+                        "example": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+                    },
+                    "priceUSD": {
+                        "type": "string",
+                        "example": "2503.91"
+                    }
+                    }
+                },
+                "options": {
+                    "type": "object",
+                    "properties": {
+                    "slippage": {
+                        "type": "number",
+                        "example": 1
+                    },
+                    "dapps": {
+                        "type": "array",
+                        "items": {
+                        "type": "string"
+                        },
+                        "example": [
+                        "nitro",
+                        "jumper"
+                        ]
+                    }
+                    }
+                },
+                "toAddress": {
+                    "type": "string",
+                    "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+                },
+                "approvalAddress": {
+                    "type": "string",
+                    "example": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44"
+                },
+                "gasGwei": {
+                    "type": "string",
+                    "example": "0.009821836"
+                },
+                "transaction": {
+                    "type": "object",
+                    "properties": {
+                    "value": {
+                        "type": "string",
+                        "example": "0x00"
+                    },
+                    "to": {
+                        "type": "string",
+                        "example": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44"
+                    },
+                    "from": {
+                        "type": "string",
+                        "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+                    },
+                    "data": {
+                        "type": "string",
+                        "example": "quote"
+                    },
+                    "chainId": {
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "gasPrice": {
+                        "type": "string",
+                        "example": "9821836"
+                    },
+                    "gas": {
+                        "type": "integer",
+                        "example": 400000
+                    }
+                    }
+                }
+                }
+            }
+            }
+        
+        
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Quote generated successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                    "tool": "nitro",
+                    "fromChainId": 10,
+                    "fromAmountUSD": "1000.00",
+                    "fromAmount": "1000000000",
+                    "fromAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                    "toAmount": "401125195932054597",
+                    "toAmountMin": "397113943972734000",
+                    "swapCostETH": "0.00000052",
+                    "swapCostUSD": "0.00130",
+                    "toChainId": 42161,
+                    "toAmountUSD": "1004.38",
+                    "fromToken": {
+                      "address": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+                      "chainId": 10,
+                      "symbol": "USDC",
+                      "decimals": 6,
+                      "name": "USD Coin",
+                      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+                      "priceUSD": "1"
+                    },
+                    "toToken": {
+                      "address": "0x0000000000000000000000000000000000000000",
+                      "chainId": 42161,
+                      "symbol": "ETH",
+                      "decimals": 18,
+                      "name": "ETH",
+                      "coinKey": "ETH",
+                      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
+                      "priceUSD": "2503.91"
+                    },
+                    "options": {
+                      "slippage": 1,
+                      "dapps": [
+                        "nitro",
+                        "jumper"
+                      ]
+                    },
+                    "toAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                    "approvalAddress": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
+                    "gasGwei": "0.001300776",
+                    "transaction": {
+                      "value": "0x00",
+                      "to": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
+                      "from": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                      "data": "0x06135b7c000000000000000000000000000000000000000000000000000000000000006b34323136310000000000000000000000000000000000000000000000......",
+                      "chainId": 10,
+                      "gasPrice": "1300776",
+                      "gas": 400000
+                    }
+                  }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad request"
+        },
+        "500": {
+          "description": "Server error"
+        }
+      }
+    }
+  }
+  

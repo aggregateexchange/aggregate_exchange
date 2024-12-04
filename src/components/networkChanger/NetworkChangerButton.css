@@ -1,0 +1,177 @@
+/* src/components/networkChanger/NetworkChangerButton.css */
+
+/* Prevent horizontal scrolling globally */
+body {
+    overflow-x: hidden;
+  }
+  
+  /* Container for the Network Changer Button and Dropdown */
+  .network-changer-container {
+    position: relative;
+    display: inline-block;
+    
+    /* Move the container 40px left and 50px down using transform */
+    transform: translate(110px, 0px);
+  }
+  
+  /* Network Changer Button Styling */
+  .network-changer-button {
+    display: flex;
+    align-items: center;
+    background-color: #131418;
+    color: var(--text-primary);
+    border: 1px solid #262830;
+    padding: 8px 15px;
+    border-radius: 11px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    font-size: 15px;
+    height: 50px;
+    /* Increase the width by 50px */
+    width: 180px; /* Original width was 150px */
+  }
+  
+  .network-changer-button:hover:not(:disabled) {
+    background-color: var(--highlight-background);
+    border-color: var(--accent-color);
+  }
+  
+  .network-changer-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Circular Network Logos */
+  .network-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 50%;         /* Makes the image circular */
+    object-fit: cover;          /* Ensures the image covers the container without distortion */
+    
+    /* Optional Enhancements */
+    border: 1px solid #262830; /* Subtle border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  /* Network Name Styling */
+  .network-name {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  
+  /* Dropdown Styling */
+  .network-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #131418;
+    border: 1px solid #262830;
+    border-radius: 8px;
+    width: 100%; /* Matches the button's width */
+    max-height: 600px; /* Maximum height before scrolling */
+    overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
+    z-index: 1000;
+    
+    /* Scrollbar Styling */
+    
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) #131418;
+  }
+  
+  /* WebKit Browsers (Chrome, Safari, Edge) */
+  .network-dropdown::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .network-dropdown::-webkit-scrollbar-track {
+    background: var(--background-card);
+    border-radius: 4px;
+  }
+  
+  .network-dropdown::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    border: 2px solid var(--background-card); /* Adds padding around the thumb */
+  }
+  
+  /* Network Item Styling */
+  .network-item {
+    display: flex;
+    align-items: center;
+    background-color: #131418;
+    color: var(--text-primary);
+    border: none;
+    width: 100%;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  .network-item:hover:not(:disabled) {
+    background-color: var(--highlight-background);
+  }
+  
+  .network-item:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Highlight the Active Network */
+  .network-item.active {
+    background-color: var(--highlight-background);
+  }
+  
+  /* Loading Spinner Styling */
+  .loading-spinner {
+    margin-left: auto;
+  }
+  
+  /* Error Message Styling */
+  .error-message {
+    color: red;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  
+  /* Smooth Transition for Dropdown Appearance */
+  .network-dropdown {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .network-dropdown.open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Search Input Styling (If Implemented) */
+  .network-search-input {
+    width: 80%;
+    margin: 10px auto;
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid #262830;
+    border-radius: 4px;
+    background-color: #131418;
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+  
+  .network-search-input::placeholder {
+    color: var(--text-description);
+  }
+  
+  /* Optional: Prevent Dropdown from Exceeding Parent Width */
+  .network-dropdown {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  

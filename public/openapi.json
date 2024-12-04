@@ -1,0 +1,59 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Aggregate Exchange API",
+    "version": "1.0.0",
+    "description": "API documentation for Aggregate Exchange"
+  },
+  "servers": [
+    {
+      "url": "https://www.aggregate.exchange/api",
+      "description": "Aggregate"
+    },
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Fetch quote",
+      "description": "Endpoints for fetching quotes"
+    },
+    {
+      "name": "Approval transcation data",
+      "description": "Get approval data (optional)"
+    },
+    {
+      "name": "Get transaction data",
+      "description": "Endpoints for getting transaction data"
+    },
+    {
+      "name": "API information",
+      "description": "Endpoints providing API information"
+    }
+  ],
+  "paths": {
+    "/quote": {
+      "$ref": "./openApi/paths/quote.json"
+    },
+    "/quote_direct": {
+      "$ref": "./openApi/paths/quote_direct.json"
+    },
+    "/approve": {
+      "$ref": "./openApi/paths/approve.json"
+    },
+    "/transaction": {
+      "$ref": "./openApi/paths/transaction.json"
+    },
+    "/dapps": {
+      "$ref": "./openApi/paths/dapps.json"
+    },
+    "/chains": {
+      "$ref": "./openApi/paths/chains.json"
+    },
+    "/tokens": {
+      "$ref": "./openApi/paths/tokens.json"
+    }
+  }
+}

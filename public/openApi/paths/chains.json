@@ -1,0 +1,178 @@
+{
+    "get": {
+        "tags": ["API information"],
+      "summary": "Retrieve a list of all supported chains",
+      "description": "This endpoint retrieves a list of all supported chains.",
+      "responses": {
+        "200": {
+          "description": "List of chains retrieved successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string",
+                      "example": "eth"
+                    },
+                    "chainType": {
+                      "type": "string",
+                      "example": "EVM"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Ethereum"
+                    },
+                    "coin": {
+                      "type": "string",
+                      "example": "ETH"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "mainnet": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "logoURI": {
+                      "type": "string",
+                      "example": "https://raw.githubusercontent.com/lifinance/types/main/src/assets/icons/chains/ethereum.svg"
+                    },
+                    "tokenlistUrl": {
+                      "type": "string",
+                      "example": "https://gateway.ipfs.io/ipns/tokens.uniswap.org"
+                    },
+                    "multicallAddress": {
+                      "type": "string",
+                      "example": "0xcA11bde05977b3631167028862bE2a173976CA11"
+                    },
+                    "metamask": {
+                      "type": "object",
+                      "properties": {
+                        "chainId": {
+                          "type": "string",
+                          "example": "0x1"
+                        },
+                        "blockExplorerUrls": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "https://etherscan.io/"
+                          }
+                        },
+                        "chainName": {
+                          "type": "string",
+                          "example": "Ethereum Mainnet"
+                        },
+                        "nativeCurrency": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "example": "ETH"
+                            },
+                            "symbol": {
+                              "type": "string",
+                              "example": "ETH"
+                            },
+                            "decimals": {
+                              "type": "integer",
+                              "example": 18
+                            }
+                          }
+                        },
+                        "rpcUrls": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "https://rpc.ankr.com/eth"
+                          }
+                        }
+                      }
+                    },
+                    "nativeToken": {
+                      "type": "object",
+                      "properties": {
+                        "address": {
+                          "type": "string",
+                          "example": "0x0000000000000000000000000000000000000000"
+                        },
+                        "chainId": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "symbol": {
+                          "type": "string",
+                          "example": "ETH"
+                        },
+                        "decimals": {
+                          "type": "integer",
+                          "example": 18
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "ETH"
+                        },
+                        "coinKey": {
+                          "type": "string",
+                          "example": "ETH"
+                        },
+                        "logoURI": {
+                          "type": "string",
+                          "example": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "key": "eth",
+                    "chainType": "EVM",
+                    "name": "Ethereum",
+                    "coin": "ETH",
+                    "id": 1,
+                    "mainnet": true,
+                    "logoURI": "https://raw.githubusercontent.com/lifinance/types/main/src/assets/icons/chains/ethereum.svg",
+                    "tokenlistUrl": "https://gateway.ipfs.io/ipns/tokens.uniswap.org",
+                    "multicallAddress": "0xcA11bde05977b3631167028862bE2a173976CA11",
+                    "metamask": {
+                      "chainId": "0x1",
+                      "blockExplorerUrls": [
+                        "https://etherscan.io/"
+                      ],
+                      "chainName": "Ethereum Mainnet",
+                      "nativeCurrency": {
+                        "name": "ETH",
+                        "symbol": "ETH",
+                        "decimals": 18
+                      },
+                      "rpcUrls": [
+                        "https://rpc.ankr.com/eth"
+                      ]
+                    },
+                    "nativeToken": {
+                      "address": "0x0000000000000000000000000000000000000000",
+                      "chainId": 1,
+                      "symbol": "ETH",
+                      "decimals": 18,
+                      "name": "ETH",
+                      "coinKey": "ETH",
+                      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Server error"
+        }
+      }
+    }
+  }
+  

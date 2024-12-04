@@ -1,0 +1,447 @@
+{
+  "get": {
+    "tags": ["Fetch quote"],
+    "summary": "Get a quote for a token swap/bridge",
+    "description": "Example swap from 100 USDC on Optimism to ETH on Arbitrum\n\n**www.aggregate.exchange/api/quote**\n\nNote that not every dApp provides transcation data directly, thats why we recomend to always do /transcation call so all dapps work correctly\n\nQuote **requestId** is valid for 10 minutes"
+,
+    "parameters": [
+      {
+        "name": "fromChainId",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "example": 10
+        },
+        "description": "Chain ID of the source blockchain (Optimism = 10)"
+      },
+      {
+        "name": "toChainId",
+        "in": "query",
+        "schema": {
+          "type": "integer",
+          "example": 42161
+        },
+        "description": "Chain ID of the destination blockchain (Will default to fromChainId if not provided)"
+      },
+      {
+        "name": "fromAddress",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+        },
+        "description": "Source wallet address"
+      },
+      {
+        "name": "amount",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1000000000"
+        },
+        "description": "Amount to be transferred in smalles unit ( 1000 USDC = 1000000000 Wei)"
+      },
+      {
+        "name": "fromTokenAddress",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85"
+        },
+        "description": "Address of the source token (USDC)"
+      },
+      {
+        "name": "toTokenAddress",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "0x0000000000000000000000000000000000000000"
+        },
+        "description": "Address of the destination token (for native currency both 0x0000000000000000000000000000000000000000 or 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE can be used)"
+      },
+      {
+        "name": "toAddress",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+        },
+        "description": "Destination wallet address (Will default to fromAddress if not provided)"
+      },
+      {
+        "name": "slippage",
+        "in": "query",
+        "schema": {
+          "type": "number",
+          "example": 1
+        },
+        "description": "Allowed slippage percentage (0.5 for 0.5% slippage)"
+      },
+      {
+        "name": "dapps",
+        "in": "query",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": ["nitro", "jumper"]
+        },
+        "description": "Specific dApps can be selected. Quotes will be fetched only for those dapps (If not provided it will fetch quote for all available dApps)"
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Quote generated successfully",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "example": {
+                "requestId": "622e76fe-fcdd-4cd2-a87c-0f50bacb06de",
+                "success": true,
+                "data": [
+                  {
+                    "id": 1,
+                    "name": "nitro",
+                    "data": {
+                      "tool": "nitro",
+                      "fromChainId": 10,
+                      "fromAmountUSD": "1000.00",
+                      "fromAmount": "1000000000",
+                      "fromAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                      "toAmount": "400682998888926075",
+                      "toAmountMin": "396676168900036800",
+                      "swapCostETH": "0.00000393",
+                      "swapCostUSD": "0.00985",
+                      "toChainId": 42161,
+                      "toAmountUSD": "1003.27",
+                      "fromToken": {
+                        "address": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+                        "chainId": 10,
+                        "symbol": "USDC",
+                        "decimals": 6,
+                        "name": "USD Coin",
+                        "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+                        "priceUSD": "1"
+                      },
+                      "toToken": {
+                        "address": "0x0000000000000000000000000000000000000000",
+                        "chainId": 42161,
+                        "symbol": "ETH",
+                        "decimals": 18,
+                        "name": "ETH",
+                        "coinKey": "ETH",
+                        "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
+                        "priceUSD": "2503.91"
+                      },
+                      "options": {
+                        "slippage": 1,
+                        "dapps": [
+                          "nitro",
+                          "jumper"
+                        ]
+                      },
+                      "toAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                      "approvalAddress": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
+                      "gasGwei": "0.009821836",
+                      "transaction": {
+                        "value": "0x00",
+                        "to": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
+                        "from": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                        "data": "quote",
+                        "chainId": 10,
+                        "gasPrice": "9821836",
+                        "gas": 400000
+                      }
+                    }
+                  },
+                  {
+                    "id": 2,
+                    "name": "jumper",
+                    "data": {
+                      "tool": "jumper",
+                      "fromChainId": 10,
+                      "fromAmountUSD": "1000.00",
+                      "fromAmount": "1000000000",
+                      "fromAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                      "toAmount": "396732958335787021",
+                      "toAmountMin": "392765628752429100",
+                      "swapCostETH": "0.00002686",
+                      "swapCostUSD": "0.0673",
+                      "toChainId": 42161,
+                      "toAmountUSD": "993.38",
+                      "fromToken": {
+                        "address": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+                        "chainId": 10,
+                        "symbol": "USDC",
+                        "decimals": 6,
+                        "name": "USD Coin",
+                        "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+                        "priceUSD": "1"
+                      },
+                      "toToken": {
+                        "address": "0x0000000000000000000000000000000000000000",
+                        "chainId": 42161,
+                        "symbol": "ETH",
+                        "decimals": 18,
+                        "name": "ETH",
+                        "coinKey": "ETH",
+                        "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
+                        "priceUSD": "2503.91"
+                      },
+                      "options": {
+                        "slippage": 1,
+                        "dapps": [
+                          "nitro",
+                          "jumper"
+                        ]
+                      },
+                      "toAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                      "approvalAddress": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                      "gasGwei": "0.009821836",
+                      "transaction": {
+                        "value": "0x0",
+                        "to": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                        "from": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                        "data": "quote",
+                        "chainId": 10,
+                        "gasPrice": "9821836",
+                        "gas": 2734861
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request"
+      },
+      "500": {
+        "description": "Server error"
+      }
+    }
+  },
+  "post": {
+    "tags": ["Fetch quote"],
+    "summary": "Get a quote for a token swap/bridge (for detailed explanation of parameters look into GET request)",
+    "description": "Example swap from 100 USDC on Optimism to ETH on Arbitrum\n\n**www.aggregate.exchange/api/quote**\n\nNote that not every dApp provides transcation data directly, thats why we recomend to always do /transcation call so all dapps work correctly\n\nQuote **requestId** is valid for 10 minutes",
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "required": [
+              "fromChainId",
+              "fromAddress",
+              "amount",
+              "fromTokenAddress",
+              "toTokenAddress",
+              "toAddress",
+              "toChainId",
+              "options"
+            ],
+            "properties": {
+              "fromChainId": {
+                "type": "integer",
+                "description": "Chain ID of the source blockchain",
+                "example": 10
+              },
+              "fromAddress": {
+                "type": "string",
+                "description": "Source wallet address",
+                "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+              },
+              "amount": {
+                "type": "string",
+                "description": "Amount to be transferred",
+                "example": "100000000"
+              },
+              "fromTokenAddress": {
+                "type": "string",
+                "description": "Address of the source token",
+                "example": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85"
+              },
+              "toTokenAddress": {
+                "type": "string",
+                "description": "Address of the destination token",
+                "example": "0x0000000000000000000000000000000000000000"
+              },
+              "toAddress": {
+                "type": "string",
+                "description": "Destination wallet address",
+                "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+              },
+              "toChainId": {
+                "type": "integer",
+                "description": "Chain ID of the destination blockchain",
+                "example": 42161
+              },
+              "options": {
+                "type": "object",
+                "properties": {
+                  "slippage": {
+                    "type": "number",
+                    "description": "Allowed slippage percentage",
+                    "example": 1
+                  },
+                  "dapps": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "List of dapps",
+                    "example": ["nitro", "jumper"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Quote generated successfully",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "example": {
+                "requestId": "622e76fe-fcdd-4cd2-a87c-0f50bacb06de",
+                "success": true,
+                "data": [
+                  {
+                    "id": 1,
+                    "name": "nitro",
+                    "data": {
+                      "tool": "nitro",
+                      "fromChainId": 10,
+                      "fromAmountUSD": "1000.00",
+                      "fromAmount": "1000000000",
+                      "fromAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                      "toAmount": "400682998888926075",
+                      "toAmountMin": "396676168900036800",
+                      "swapCostETH": "0.00000393",
+                      "swapCostUSD": "0.00985",
+                      "toChainId": 42161,
+                      "toAmountUSD": "1003.27",
+                      "fromToken": {
+                        "address": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+                        "chainId": 10,
+                        "symbol": "USDC",
+                        "decimals": 6,
+                        "name": "USD Coin",
+                        "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+                        "priceUSD": "1"
+                      },
+                      "toToken": {
+                        "address": "0x0000000000000000000000000000000000000000",
+                        "chainId": 42161,
+                        "symbol": "ETH",
+                        "decimals": 18,
+                        "name": "ETH",
+                        "coinKey": "ETH",
+                        "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
+                        "priceUSD": "2503.91"
+                      },
+                      "options": {
+                        "slippage": 1,
+                        "dapps": [
+                          "nitro",
+                          "jumper"
+                        ]
+                      },
+                      "toAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                      "approvalAddress": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
+                      "gasGwei": "0.009821836",
+                      "transaction": {
+                        "value": "0x00",
+                        "to": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
+                        "from": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                        "data": "quote",
+                        "chainId": 10,
+                        "gasPrice": "9821836",
+                        "gas": 400000
+                      }
+                    }
+                  },
+                  {
+                    "id": 2,
+                    "name": "jumper",
+                    "data": {
+                      "tool": "jumper",
+                      "fromChainId": 10,
+                      "fromAmountUSD": "1000.00",
+                      "fromAmount": "1000000000",
+                      "fromAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                      "toAmount": "396732958335787021",
+                      "toAmountMin": "392765628752429100",
+                      "swapCostETH": "0.00002686",
+                      "swapCostUSD": "0.0673",
+                      "toChainId": 42161,
+                      "toAmountUSD": "993.38",
+                      "fromToken": {
+                        "address": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+                        "chainId": 10,
+                        "symbol": "USDC",
+                        "decimals": 6,
+                        "name": "USD Coin",
+                        "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+                        "priceUSD": "1"
+                      },
+                      "toToken": {
+                        "address": "0x0000000000000000000000000000000000000000",
+                        "chainId": 42161,
+                        "symbol": "ETH",
+                        "decimals": 18,
+                        "name": "ETH",
+                        "coinKey": "ETH",
+                        "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
+                        "priceUSD": "2503.91"
+                      },
+                      "options": {
+                        "slippage": 1,
+                        "dapps": [
+                          "nitro",
+                          "jumper"
+                        ]
+                      },
+                      "toAddress": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                      "approvalAddress": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                      "gasGwei": "0.009821836",
+                      "transaction": {
+                        "value": "0x0",
+                        "to": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+                        "from": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                        "data": "quote",
+                        "chainId": 10,
+                        "gasPrice": "9821836",
+                        "gas": 2734861
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request"
+      },
+      "500": {
+        "description": "Server error"
+      }
+    }
+  }
+}

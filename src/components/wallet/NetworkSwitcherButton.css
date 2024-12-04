@@ -1,0 +1,51 @@
+.network-switcher-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px; /* Adjust spacing to place it next to the connect button */
+  }
+  
+  .network-switcher-button {
+    background-color: hsl(230deg 11.63% 12%);
+    color: #eeeef0;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .network-switcher-button:hover {
+    background-color: hsl(230deg 11.63% 15%);
+  }
+  
+  .network-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: hsl(230deg 11.63% 12%);
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 100;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    list-style: none;
+    width: 200px;
+  }
+  
+  .network-list li {
+    padding: 10px;
+    color: #eeeef0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .network-list li:hover {
+    background-color: hsl(230deg 11.63% 15%);
+  }
+  
+  .network-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  

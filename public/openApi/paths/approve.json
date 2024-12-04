@@ -1,0 +1,316 @@
+{
+    "get": {
+      "tags": ["Approval transcation data"],
+      "summary": "Get approval transaction data by requestId and quoteNumber",
+      "description": "Use this to get approval transaction data simply by requestId from your request and quoteNumber (number of quote you want to use, starting from 1)\n\nThis step is not necessary you can simply fetch the approval data from quote",
+      "parameters": [
+        {
+          "name": "requestId",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "622e76fe-fcdd-4cd2-a87c-0f50bacb06de"
+          },
+          "description": "The requestId from the quote response"
+        },
+        {
+          "name": "quoteNumber",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "example": 1
+          },
+          "description": "The number of the quote you want to use, starting from 1"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Approval transaction data retrieved successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from": { "type": "string" },
+                  "to": { "type": "string" },
+                  "data": { "type": "string" },
+                  "value": { "type": "string" },
+                  "gasPrice": { "type": "string" },
+                  "gas": { "type": "integer" },
+                  "chainId": { "type": "integer" }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "summary": "Example response",
+                  "value": {
+                    "from": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                    "to": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+                    "data": "0x095ea7b30000000000000000000000005501a36b1313ac5d27e85418acd2aa4564f50b44ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+                    "value": "0x0",
+                    "gasPrice": "9821836",
+                    "gas": "56589",
+                    "chainId": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad request"
+        },
+        "500": {
+          "description": "Server error"
+        }
+      }
+    },
+    "post": {
+      "tags": ["Approval transcation data"],
+      "summary": "Process an approval transaction from a quote",
+      "description": "To this /approve endpoint you pass the whole quote you selected (usually the first, best one) returned from the /quote endpoint.\n\nThis step is not necessary you can simply fetch the approval data from quote",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "type": "string",
+                  "example": "nitro"
+                },
+                "fromChainId": {
+                  "type": "integer",
+                  "example": 10
+                },
+                "fromAmountUSD": {
+                  "type": "string",
+                  "example": "1000.00"
+                },
+                "fromAmount": {
+                  "type": "string",
+                  "example": "1000000000"
+                },
+                "fromAddress": {
+                  "type": "string",
+                  "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+                },
+                "toAmount": {
+                  "type": "string",
+                  "example": "400682998888926075"
+                },
+                "toAmountMin": {
+                  "type": "string",
+                  "example": "396676168900036800"
+                },
+                "toChainId": {
+                  "type": "integer",
+                  "example": 42161
+                },
+                "fromToken": {
+                  "type": "object",
+                  "properties": {
+                    "address": {
+                      "type": "string",
+                      "example": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85"
+                    },
+                    "chainId": {
+                      "type": "integer",
+                      "example": 10
+                    },
+                    "symbol": {
+                      "type": "string",
+                      "example": "USDC"
+                    },
+                    "decimals": {
+                      "type": "integer",
+                      "example": 6
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "USD Coin"
+                    },
+                    "logoURI": {
+                      "type": "string",
+                      "example": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
+                    },
+                    "priceUSD": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  }
+                },
+                "toToken": {
+                  "type": "object",
+                  "properties": {
+                    "address": {
+                      "type": "string",
+                      "example": "0x0000000000000000000000000000000000000000"
+                    },
+                    "chainId": {
+                      "type": "integer",
+                      "example": 42161
+                    },
+                    "symbol": {
+                      "type": "string",
+                      "example": "ETH"
+                    },
+                    "decimals": {
+                      "type": "integer",
+                      "example": 18
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "ETH"
+                    },
+                    "coinKey": {
+                      "type": "string",
+                      "example": "ETH"
+                    },
+                    "logoURI": {
+                      "type": "string",
+                      "example": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+                    },
+                    "priceUSD": {
+                      "type": "string",
+                      "example": "2503.91"
+                    }
+                  }
+                },
+                "options": {
+                  "type": "object",
+                  "properties": {
+                    "slippage": {
+                      "type": "number",
+                      "example": 1
+                    },
+                    "dapps": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "nitro",
+                        "jumper"
+                      ]
+                    }
+                  }
+                },
+                "toAddress": {
+                  "type": "string",
+                  "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+                },
+                "approvalAddress": {
+                  "type": "string",
+                  "example": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44"
+                },
+                "gasGwei": {
+                  "type": "string",
+                  "example": "0.009821836"
+                },
+                "transaction": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "example": "0x00"
+                    },
+                    "to": {
+                      "type": "string",
+                      "example": "0x5501A36b1313aC5d27e85418acd2AA4564f50b44"
+                    },
+                    "from": {
+                      "type": "string",
+                      "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+                    },
+                    "data": {
+                      "type": "string",
+                      "example": "0x095ea7b30000000000000000000000005501a36b1313ac5d27e85418acd2aa4564f50b44ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                    },
+                    "chainId": {
+                      "type": "integer",
+                      "example": 10
+                    },
+                    "gasPrice": {
+                      "type": "string",
+                      "example": "9821836"
+                    },
+                    "gas": {
+                      "type": "integer",
+                      "example": 56589
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Approval transaction processed successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "type": "string",
+                    "example": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B"
+                  },
+                  "to": {
+                    "type": "string",
+                    "example": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85"
+                  },
+                  "data": {
+                    "type": "string",
+                    "example": "0x095ea7b30000000000000000000000005501a36b1313ac5d27e85418acd2aa4564f50b44ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": "0x0"
+                  },
+                  "gasPrice": {
+                    "type": "string",
+                    "example": "9821836"
+                  },
+                  "gas": {
+                    "type": "integer",
+                    "example": 56589
+                  },
+                  "chainId": {
+                    "type": "integer",
+                    "example": 10
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "summary": "Example response",
+                    "value": {
+                      "from": "0x08d4c57aF50544B8C8c5ee64Ec76530F1AB73f8B",
+                      "to": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+                      "data": "0x095ea7b30000000000000000000000005501a36b1313ac5d27e85418acd2aa4564f50b44ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+                      "value": "0x0",
+                      "gasPrice": "9821836",
+                      "gas": "56589",
+                      "chainId": 10
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad request"
+        },
+        "500": {
+          "description": "Server error"
+        }
+      }
+    }
+  }
+  

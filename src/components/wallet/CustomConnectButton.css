@@ -1,0 +1,81 @@
+/* src/components/wallet/CustomConnectButton.css */
+
+/* Container Wrapper Styling */
+.connect-button-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  /* Custom Styling for the Connect Button */
+  .connect-button-wrapper button {
+    /* Set the desired height */
+    height: 60px; /* Adjusts the button's height to 100 pixels */
+  
+    /* Optional: Adjust font size and padding to accommodate the new height */
+    font-size: 16px;
+    padding: 20px 24px; /* Increase padding for better vertical alignment */
+  
+    /* Optional: Adjust border-radius if needed */
+    border-radius: 12px;
+  
+    /* Optional: Ensure the button's width accommodates the increased height */
+    width: 100px; /* Increased width by 20 pixels for better proportion */
+  
+    /* Ensure the button's content is centered vertically */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+  /* Dropdown Alignment Adjustment */
+  .connect-button-wrapper .thirdweb-connect-modal {
+    /* Ensure the dropdown aligns with the resized button */
+    top: 120px; /* Adjust based on the button's new height */
+    right: 0; /* Aligns the dropdown to the button's right edge */
+  
+    /* Optional: Adjust the width if needed */
+    width: 220px; /* Matches the button's new width */
+  }
+  
+  /* Optional: Smooth Transition for Dropdown Appearance */
+  .connect-button-wrapper .thirdweb-connect-modal {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .connect-button-wrapper .thirdweb-connect-modal.open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Scrollbar Styling within the Dropdown */
+  .connect-button-wrapper .thirdweb-connect-modal::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .connect-button-wrapper .thirdweb-connect-modal::-webkit-scrollbar-track {
+    background: var(--background-card);
+    border-radius: 4px;
+  }
+  
+  .connect-button-wrapper .thirdweb-connect-modal::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    border: 2px solid var(--background-card); /* Adds padding around the thumb */
+  }
+  
+  /* Firefox Scrollbar Styling */
+  .connect-button-wrapper .thirdweb-connect-modal {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--accent-color) var(--background-card); /* Firefox */
+  }
+  
+  /* Ensure Dropdown Does Not Cause Horizontal Overflow */
+  .connect-button-wrapper .thirdweb-connect-modal {
+    overflow-x: hidden;
+  }
+  

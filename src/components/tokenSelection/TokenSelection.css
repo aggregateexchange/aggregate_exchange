@@ -1,0 +1,589 @@
+:root {
+    --background-dark: #1a1b1e;
+    --background-card: #222529;
+    --background-card-tokens: #101316;
+    --text-primary: #ffffff;
+    --text-secondary: #afabab;
+    --text-description: #3f4347;
+    --accent-color: #f97316;
+    --border-color: #374151;
+    --input-background: #2a2d31;
+    --highlight-color: #3a3d42;
+    --highlight-background: rgba(58, 62, 68, 0.5);
+}
+
+.token-selection-main-container {
+    margin: 10px;
+    position: relative;
+    padding: 20px;
+    width: 300px;
+    height: 480px;
+    border-radius: 10px;
+    position: absolute;
+    left: calc(50% - 50px - 300px);
+    top: 390px;
+    transform: translateY(-50%);
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+    
+}
+
+.token-selection-settings-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.token-selection-settings-icon::before {
+    content: '';
+    position: absolute;
+    top: -0px;
+    left: -0px;
+    right: -0px;
+    bottom: -0px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    z-index: -1;
+}
+
+.token-selection-settings-icon:hover::before {
+    background-color: var(--highlight-background);
+}
+
+.token-selection-settings-icon::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-image: url('https://imgur.com/PYeFYrL.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(0) invert(1); /* Ensures the icon is always white */
+    z-index: 1;
+}
+
+.token-selection-horizontal-container {
+    display: flex;
+    align-items: center;
+    top: 20px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 11px;
+    border-radius: 7px;
+    background-color: var(--background-card-tokens);
+    height: 90px;
+    position: relative;
+}
+
+.token-selection-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    color: var(--text-secondary);
+}
+
+.token-selection-selector {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    border: none;
+    background-color: var(--background-card);
+    text-align: left;
+    height: 40px;
+    color: var(--text-description); /* Light gray color for "Select Token" text */
+    border-radius: 7px; /* Rounded borders */
+    padding: 10px 15px; /* Add some padding */
+}
+
+.token-selection-amount-input {
+    position: absolute;
+    bottom: 27px;
+    left: 15px;
+    right: 15px;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    height: 50px;
+    font-size: 23px;
+    font-weight: bold;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+    color: var(--text-primary);
+}
+
+.token-selection-amount-input::placeholder {
+    color: var(--text-description);
+    opacity: 1;
+}
+
+.token-selection-amount-input:focus {
+    outline: none;
+}
+
+.token-selection-usd-value {
+    position: absolute;
+    bottom: 15px;
+    left: 25px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.token-selection-find-route-button {
+    width: calc(100% - 43px);
+    padding: 15px;
+    background-color: var(--accent-color);
+    color: #e4e4e4;  /* Changed this line */
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+.token-selection-find-route-button:hover {
+    background-color: #e86304;
+}
+
+.token-selection-selected-info {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.token-selection-token-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--input-background);
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.token-selection-token-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.token-selection-token-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: auto;
+}
+
+/* Token Symbol - Truncate with Ellipsis After 200px */
+.token-selection-token-symbol {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-primary);
+    
+    /* New Properties for Truncation */
+    max-width: 150px;           /* Sets the maximum width to 200px */
+    overflow: hidden;           /* Hides the overflowing text */
+    text-overflow: ellipsis;    /* Displays ellipsis (...) when text overflows */
+    white-space: nowrap;        /* Prevents the text from wrapping to the next line */
+}
+
+
+.token-selection-chain-name {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.token-selection-selected-chain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.token-selection-selected-chain img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    transform: translate(10px, 10px);
+}
+
+.token-selection-balance-display {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 33px);
+    transform: translateY(-50%);
+}
+
+
+.token-selection-balance-display button {
+    background-color: var(--input-background);
+    color: var(--text-secondary);
+    border: none;
+    border-radius: 13px;
+    padding: 4px 4px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; 
+    display: flex;  
+    align-items: center; 
+    justify-content: center; 
+}
+
+.token-selection-balance-display button:hover {
+    background-color: var(--border-color);
+    color: var(--accent-color); /* Change text color on hover */
+}
+
+.token-switch-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 40px;
+    width: 30px;
+    height: 30px;
+    margin: -45px auto 5px auto;
+    background-color: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 3;
+    background-image: url('/images/switch.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%; /* Adjust this value to make the image smaller */
+}
+
+.token-switch-button:hover {
+    background-color: var(--input-background);
+}
+
+.transaction-token-container + .transaction-token-container {
+    margin-top: 15px;
+}
+
+/* New styles to match the image */
+.simple-swap-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--background-card);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.simple-swap-toggle span {
+    color: var(--text-secondary);
+}
+
+.select-multiple-tokens {
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.minimum-received {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.gas-estimate {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* Loading Spinner Styles */
+.loading-spinner {
+    border: 2px solid var(--text-secondary);
+    border-top: 2px solid var(--accent-color);
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    margin-left: 7px;
+    animation: spin 0.3s linear infinite;
+}
+
+/* Refetch Button - No Background, Just Symbol */
+.refetch-button {
+    background: none;              /* Removes background */
+    border: none;                  /* Removes border */
+    padding: 0;                    /* Removes padding */
+    cursor: pointer;               /* Changes cursor to pointer on hover */
+    display: flex;                 /* Enables flex layout */
+    align-items: center;           /* Centers content vertically */
+    justify-content: center;       /* Centers content horizontally */
+    width: 20px;                   /* Sets fixed width */
+    height: 20px;                  /* Sets fixed height */
+}
+
+.refetch-button:hover {
+    opacity: 0.7;                  /* Slight opacity change on hover for feedback */
+}
+
+/* If using an SVG icon inside the button */
+.refetch-button svg {
+    fill: var(--text-secondary);   /* Sets the icon color */
+    width: 100%;                   /* Ensures the SVG fills the button */
+    height: 100%;
+}
+
+.refetch-button:hover svg {
+    fill: var(--accent-color);     /* Changes icon color on hover if desired */
+}
+
+/* Spin Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.token-selection-refetch-button {
+    --button-size: 22px;
+    --border-width: 2px;
+    --rotation-angle: 220deg;
+    
+    position: absolute;
+    top: 15px;
+    left: 270px;
+    width: var(--button-size);
+    height: var(--button-size);
+    border-radius: 50%;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    border: var(--border-width) solid var(--text-secondary);
+    border-bottom-color: transparent;
+    z-index: 5;
+    transform: rotate(var(--rotation-angle));
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.token-selection-refetch-button::after {
+    --arrow-size: calc(var(--button-size) * 0.1875);
+    
+    content: '';
+    position: absolute;
+    box-sizing: border-box;
+    left: calc(var(--button-size) * 0.395);
+    top: calc(var(--button-size) * 0.6525);
+    border: var(--arrow-size) solid transparent;
+    border-right-color: var(--text-secondary);
+    transform: rotate(calc(180deg - var(--rotation-angle)));
+    transition: border-right-color 0.3s ease;
+}
+
+.token-selection-refetch-button:hover:not(:disabled) {
+    transform: rotate(calc(var(--rotation-angle) + 360deg));
+    transition: transform 1s linear, border-color 0.3s ease;
+    border-color: var(--accent-color);
+    border-bottom-color: transparent;
+}
+
+.token-selection-refetch-button:hover:not(:disabled)::after {
+    border-right-color: var(--accent-color);
+}
+
+
+.token-selection-refetch-button:disabled::after {
+    border-right-color: var(--text-secondary);
+}
+
+.token-selection-toggle-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+}
+
+.token-selection-toggle {
+    width: 35px;
+    height: 18px;
+    background-color: var(--background-card);
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 1px solid var(--border-color);
+    margin-left: 5px;
+}
+
+.token-selection-toggle.active {
+    background-color: #bb7645;
+}
+
+.token-selection-toggle-slider {
+    width: 14px;
+    height: 14px;
+    background-color: var(--text-primary);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.token-selection-toggle.active .token-selection-toggle-slider {
+    transform: translateX(17px);
+    background-color: var(--background-dark);
+}
+
+.token-selection-rocket-icon {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+.token-selection-rocket-icon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--accent-color);
+    mask-image: url('/images/rocket.png');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.token-selection-rocket-icon.active::after {
+    opacity: 1;
+}
+
+.token-selection-rocket-icon.active {
+    filter: invert(49%) sepia(85%) saturate(2619%) hue-rotate(346deg) brightness(102%) contrast(96%);
+}
+
+/* Add a label for the toggle */
+.token-selection-toggle::before {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    font-weight: bold;
+    color: var(--text-secondary);
+}
+
+.token-selection-toggle.active::before {
+    left: 5px;
+    right: auto;
+    color: var(--text-primary);
+}
+
+.token-selection-tooltip-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+    top: 0px;
+  }
+  
+  /* Style for the question mark icon */
+  .token-selection-question-mark {
+    color: var(--text-secondary);
+    background-color: var(--background-card);
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold; /* Makes the question mark bold */
+    cursor: default;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Adds smooth hover transition */
+  }
+  
+  /* Hover effect on the question mark to lighten up */
+  .token-selection-tooltip-container:hover .token-selection-question-mark {
+    background-color: var(--highlight-color); /* Lightens the background on hover */
+    color: var(--text-primary); /* Changes the text color to primary on hover */
+  }
+  
+  /* Tooltip text */
+  .token-selection-tooltip {
+    visibility: hidden;
+    width: 520px;
+    background-color: var(--background-card);
+    color: var(--text-secondary);
+    text-align: left;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the question mark */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Arrow pointing down from the tooltip */
+  .token-selection-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--background-card) transparent transparent transparent;
+  }
+  
+  /* Show the tooltip on hover */
+  .token-selection-tooltip-container:hover .token-selection-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }

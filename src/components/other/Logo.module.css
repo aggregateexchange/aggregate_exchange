@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'Exodar';
+    src: url('/fonts/kroppen.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+}
+
+.logoContainer {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    z-index: 1000; /* Ensure logo stays on top */
+    user-select: none; /* Prevent text selection */
+    cursor: default; /* Use default cursor */
+    display: flex;
+    align-items: center;
+}
+
+.logoContainer * {
+    pointer-events: none; /* Prevent interaction with child elements */
+}
+
+.logoImage {
+    height: 50px; /* Adjust as needed */
+    margin-right: -5px;
+}
+
+.logoText {
+    font-family: 'Exodar', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin-top: 0px;
+    letter-spacing: -1.15px;
+    background: linear-gradient(45deg, 
+        #B19CD9 0%, 
+        #B19CD9 0%, 
+        #d35ff0 40%, 
+        #d35ff0 50%, 
+        #ff7300 80%, 
+        #ff7300 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.bottomLinksContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.bottomRightLinkContainer,
+.bottomLeftLinkContainer,
+.bottomDiscordLinkContainer,
+.bottomSwaggerLinkContainer {
+    margin-left: 10px; /* Space between the images */
+}
+
+.bottomRightImage,
+.bottomLeftImage,
+.bottomDiscordImage,
+.bottomSwaggerImage {
+    height: 40px; /* Adjust as needed */
+    width: 40px; /* Adjust as needed */
+    transition: transform 0.3s;
+    border-radius: 20px;
+    background-color: transparent; /* Ensure no background */
+}
+
+.bottomRightImage:hover,
+.bottomLeftImage:hover,
+.bottomDiscordImage:hover,
+.bottomSwaggerImage:hover {
+    transform: scale(1.1); /* Enlarge image on hover */
+}
+
+/* Ensure no focusable elements within the logo container */
+.logoContainer *:focus {
+    outline: none;
+}

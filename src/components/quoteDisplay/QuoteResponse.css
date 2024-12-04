@@ -1,0 +1,288 @@
+:root {
+  --background-dark: #1a1b1e;
+  --background-card: #222529;
+  --background-card-item: #14171a;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --accent-color: #f97316;
+  --border-color: #374151;
+  --input-background: #2a2d31;
+  --hover-color: #2c2f33;
+  --highlight-color: #8b552e;
+}
+
+/* Quote Container */
+.quote-response-quote-container {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 300px;
+  position: absolute;
+  top: -10px; /* Existing position */
+  right: calc(50% - 190px - 330px);
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.6s ease, visibility 1.6s ease, height 0.3s ease, transform 1.0s ease;
+  transform: translateX(calc(-100% + 320px)); /* Start position just to the right of TokenSelection */
+  
+  overflow-y: scroll;
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.quote-response-quote-container::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+.quote-response-quote-container.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Quote Content */
+.quote-response-content {
+  position: relative;
+  min-height: 100%;
+}
+
+/* Quote Item */
+.quote-response-quote-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px; /* Increased from 5px */
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background-color: var(--background-card-item);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+  margin-left: -5px; /* Extend item to the left */
+  margin-right: -5px; /* Extend item to the right */
+  width: calc(97% + 0px); /* Compensate for negative margins */
+}
+
+.quote-response-quote-item:hover {
+  background-color: var(--hover-color);
+}
+
+.quote-response-quote-item.quote-response-highlight {
+  background-color: var(--highlight-color);
+  border-color: var(--accent-color);
+}
+
+/* DEX Image */
+.quote-response-dex-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: var(--background-dark);
+}
+
+/* Content Container */
+.quote-response-content-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+/* Top Content */
+.quote-response-top-content {
+  display: flex;
+  align-items: center;
+}
+
+/* Token Image */
+.quote-response-token-image {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: var(--background-dark);
+}
+
+/* Quote Amount */
+.quote-response-quote-amount {
+  font-size: 20px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 140px;
+  display: inline-block;
+  color: var(--text-primary);
+}
+
+/* Bottom Content */
+.quote-response-bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Quote Tool */
+.quote-response-quote-tool {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: left;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Price in USD */
+.quote-response-price-usd {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-secondary);
+  text-align: right;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* No Quotes Message */
+.quote-response-no-quotes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+/* Highlight */
+.quote-response-highlight {
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+}
+
+/* Additional Fee Tooltip */
+.quote-response-additional-fee {
+  position: absolute;
+  top: 5px;
+  color: var(--text-secondary);
+  right: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quote-response-additional-fee::after {
+  content: attr(data-tooltip);
+  display: none;
+  position: absolute;
+  bottom: -325%;
+  right: 3px;
+  padding: 10px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: rgba(34, 37, 41, 0.9);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(2px);
+  transition: none;
+  transform: translateY(-8px);
+  width: 230px;
+  text-align: left;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.quote-response-additional-fee:hover::after {
+  display: block;
+  background-color: rgba(44, 47, 51, 0.9);
+  color: var(--text-primary);
+  font-weight: normal;
+  backdrop-filter: blur(2px);
+  line-height: 1;
+  z-index: 9999;
+  font-weight: bold;
+}
+
+/* Updated Loader Styles - Linear Loader with Overlapping Animations and Fade Effects */
+.quote-response-loader {
+  position: absolute;
+  top: -1px; /* 10 pixels from the top */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center alignment */
+  width: 300px; /* Slimmer width */
+  height: 6px; /* Thicker loader line */
+  background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+  overflow: hidden;
+  border-radius: 3px; /* Smooth edges */
+  box-sizing: border-box;
+
+  /* Initial opacity for fade-in/out */
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+.quote-response-loader.visible {
+  opacity: 1; /* Fully visible when 'visible' class is applied */
+}
+
+/* Animations start when 'animate' class is added */
+.quote-response-loader.animate::after {
+  content: '';
+  position: absolute;
+  transform: translate(-150px, 0); /* Start outside the left boundary */
+  width: 75px; /* Half the loader's width */
+  height: 100%;
+  background: linear-gradient(to right, transparent, var(--background-card), transparent);
+  animation: slideRight 1.5s infinite;
+}
+
+.quote-response-loader.animate::before {
+  content: '';
+  position: absolute;
+  transform: translate(150px, 0); /* Start outside the right boundary */
+  width: 75px; /* Half the loader's width */
+  height: 100%;
+  background: linear-gradient(to left, transparent, var(--background-card), transparent);
+  animation: slideLeft 2s infinite;
+  animation-delay: 0.75s; /* Overlapping delay */
+}
+
+/* Keyframes for sliding right */
+@keyframes slideRight {
+  0% {
+    transform: translate(-150px, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(150px, 0);
+    opacity: 0;
+  }
+}
+
+/* Keyframes for sliding left */
+@keyframes slideLeft {
+  0% {
+    transform: translate(150px, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-150px, 0);
+    opacity: 0;
+  }
+}

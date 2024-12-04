@@ -1,0 +1,52 @@
+{
+  "name": "Aggregate",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.6",
+    "@tanstack/react-query": "^4.13.0",
+    "@tanstack/react-query-devtools": "^4.13.0",
+    "@thirdweb-dev/react": "^4.6.30",
+    "@thirdweb-dev/sdk": "^4.0.91",
+    "@types/node": "^20.14.2",
+    "axios": "^1.7.2",
+    "bignumber.js": "^9.1.2",
+    "ethers": "^5.7.2",
+    "fuse.js": "^7.0.0",
+    "http": "^0.0.1-security",
+    "lucide-react": "^0.446.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-modal": "^3.16.1",
+    "react-router-dom": "^6.26.0",
+    "react-transition-group": "^4.4.5",
+    "swagger-ui-react": "^5.17.14",
+    "thirdweb": "^5.27.0",
+    "web3": "^4.9.0",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@types/react-modal": "^3.16.3",
+    "@types/react-transition-group": "^4.4.10",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.0",
+    "vite-plugin-node-polyfills": "^0.22.0"
+  }
+}
