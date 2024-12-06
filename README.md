@@ -49,7 +49,7 @@ It will work exactly same way as the deployed website. https://www.aggregate.exc
    ```
 4. Run the compiled project or without compilation
    ```sh
-   npm run build
+   npm run dev
    ```
 
 
